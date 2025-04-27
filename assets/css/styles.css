@@ -9,6 +9,7 @@ body a:hover {
 
 .post-meta {
     font-size: small;
+    margin-top: 0;
 }
 
 .post-list li h3 {
