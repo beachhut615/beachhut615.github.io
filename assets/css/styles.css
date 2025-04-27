@@ -7,12 +7,16 @@ body a:hover {
     text-decoration: underline;
 }
 
-.post article h2 {
-    margin-bottom: 0;
+.post-meta {
+    font-size: small;
 }
 
-.posts article time {
-    font-size: small;
+post-list li h3 {
+    margin-top: 0;
+}
+
+.post-title.p-name {
+    margin-bottom: 0;
 }
 
 .rss-subscribe {
