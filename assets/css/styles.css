@@ -19,6 +19,10 @@ post-list li h3 {
     margin-bottom: 0;
 }
 
+.post-header{
+    border-bottom: 0;
+}
+
 .rss-subscribe {
     display: none;
 }
