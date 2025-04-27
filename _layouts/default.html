@@ -11,7 +11,14 @@
         <h1>Beach Hut 615</h1>
     </header>
     <main>
-        {{ content }}
+<div class="posts">
+  {% for post in site.posts %}
+    <article>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%B %d, %Y" }}</time>
+    </article>
+  {% endfor %}
+</div>
     </main>
     <footer>
         <div class="footer-content">
