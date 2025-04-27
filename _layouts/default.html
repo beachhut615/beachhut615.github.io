@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+</head>
+<body>
+    <header>
+        <h1>{{ site.title }}</h1>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="https://github.com/your-username">GitHub</a></li>
+                <li><a href="https://twitter.com/your-username">Twitter</a></li>
+                <li><a href="https://linkedin.com/in/your-username">LinkedIn</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
