@@ -9,10 +9,13 @@ body a:hover {
 
 .post-meta {
     font-size: small;
+    margin-top: 0;
 }
 
-post-list li h3 {
+.post-list li h3 {
     margin-top: 0;
+    font-size: 2em;
+    text-transform: uppercase;
 }
 
 .post-title.p-name {
