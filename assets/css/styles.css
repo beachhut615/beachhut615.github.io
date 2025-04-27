@@ -1,4 +1,21 @@
-.rss-subscribe{
+body a {
+    color: #007bff;
+    text-decor
+}
+
+body a:hover {
+    text-decoration: underline;
+}
+
+.post article h2 {
+    margin-bottom: 0;
+}
+
+.posts article time {
+    font-size: small;
+}
+
+.rss-subscribe {
     display: none;
 }
 
