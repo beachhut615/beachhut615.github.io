@@ -38,13 +38,14 @@ header {
     border-bottom: 1px solid #e1e4e8;
 }
 
-header h1{
+header h1 {
     margin-bottom: 0;
 }
 
 header h2 {
     margin: 0;
     padding: 0;
+    font-size: small;
 }
 
 footer {
