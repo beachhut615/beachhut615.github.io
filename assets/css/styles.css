@@ -29,6 +29,20 @@ body a:hover {
     text-transform: uppercase;
 }
 
+#post-disclosure{
+    font-size: small;
+    font-weight: normal;
+    font-style: italic;
+}
+
+#post-button{
+        font-weight: bold;
+}
+
+#post-quote}
+    font-style: italic;
+}
+
 .rss-subscribe {
     display: none;
 }
