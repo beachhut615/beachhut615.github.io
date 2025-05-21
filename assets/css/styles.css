@@ -29,6 +29,10 @@ body a:hover {
     text-transform: uppercase;
 }
 
+#post-image img{
+    width: 100%;
+}
+
 #post-disclosure{
     font-size: small;
     font-weight: normal;
@@ -37,13 +41,6 @@ body a:hover {
 
 #post-button{
     font-weight: bold;
-    background-color: red;
-    width: 18%;
-    text-align: center;
-    padding: 0.5%;
-}
-#post-button a{
-    color: white;
 }
 
 #post-quote{
