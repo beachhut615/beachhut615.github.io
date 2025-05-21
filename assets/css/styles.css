@@ -41,6 +41,7 @@ body a:hover {
 #post-button{
     font-weight: bold;
     background-color: red;
+    width: 18%;
 }
 #post-button a{
     color: white;
