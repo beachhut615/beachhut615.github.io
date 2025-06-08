@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunscreen SPF Guide</title>
+    <style>
+        /* Basic Reset and Font */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif; /* Fallback to a generic sans-serif font */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* p-4 equivalent */
+            background-color: #f9fafb; /* bg-gray-50 equivalent */
+        }
+
+        /* Main App Container */
+        #app {
+            background-color: #ffffff; /* bg-white equivalent */
+            padding: 1.5rem; /* p-6 equivalent */
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm equivalent */
+            width: 100%; /* w-full equivalent */
+            max-width: 42rem; /* max-w-2xl equivalent (approx) */
+            border: 1px solid #e5e7eb; /* border border-gray-200 equivalent */
+        }
+
+        /* Responsive padding for app container */
+        @media (min-width: 640px) { /* sm:p-8 equivalent */
+            #app {
+                padding: 2rem;
+            }
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 1.875rem; /* text-3xl equivalent */
+            font-weight: 700; /* font-bold equivalent */
+            text-align: center;
+            color: #1f2937; /* text-gray-800 equivalent */
+            margin-bottom: 1.5rem; /* mb-6 equivalent */
+        }
+        @media (min-width: 640px) { /* sm:text-4xl equivalent */
+            h1 {
+                font-size: 2.25rem;
+                margin-bottom: 2rem; /* sm:mb-8 equivalent */
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem; /* text-2xl equivalent */
+            font-weight: 700; /* font-bold equivalent */
+            color: #1f2937; /* text-gray-800 equivalent */
+            margin-bottom: 1rem; /* mb-4 equivalent */
+        }
+        @media (min-width: 640px) { /* sm:text-3xl equivalent */
+            h2 {
+                font-size: 1.875rem;
+            }
+        }
+
+        /* Quiz Section Spacing */
+        #quiz-section > div + div { /* space-y-6 equivalent */
+            margin-top: 1.5rem;
+        }
+
+        /* Question Container Styles */
+        .question-container {
+            padding: 1rem; /* p-4 equivalent */
+            border-radius: 0.375rem; /* rounded-md equivalent */
+            background-color: #ffffff; /* bg-white equivalent */
+            border: 1px solid #e5e7eb; /* border border-gray-200 equivalent */
+        }
+
+        /* Label Styles */
+        label {
+            display: block;
+            font-size: 1.125rem; /* text-lg equivalent */
+            font-weight: 500; /* font-medium equivalent */
+            color: #374151; /* text-gray-700 equivalent */
+            margin-bottom: 0.5rem; /* mb-2 equivalent */
+        }
+
+        /* Select Input Styles */
+        select {
+            margin-top: 0.25rem; /* mt-1 equivalent */
+            display: block;
+            width: 100%; /* w-full equivalent */
+            padding: 0.75rem; /* p-3 equivalent */
+            border: 1px solid #d1d5db; /* border border-gray-300 equivalent */
+            border-radius: 0.375rem; /* rounded-md equivalent */
+            background-color: #ffffff; /* bg-white equivalent */
+            /* Removed background-image and appearance properties */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        select:focus {
+            border-color: #3b82f6; /* focus:border-blue-500 equivalent */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* focus:ring-blue-500 equivalent */
+        }
+
+        /* Error Message Styles */
+        #error-message {
+            background-color: #fef2f2; /* bg-red-50 equivalent */
+            border: 1px solid #fca5a5; /* border border-red-300 equivalent */
+            color: #b91c1c; /* text-red-700 equivalent */
+            padding: 0.75rem 1rem; /* px-4 py-3 equivalent */
+            border-radius: 0.375rem; /* rounded equivalent */
+            position: relative;
+            font-size: 0.875rem; /* text-sm equivalent */
+            margin-top: 1.5rem; /* Adds space above it */
+        }
+        #error-message strong {
+            font-weight: 600; /* font-semibold equivalent */
+        }
+        #error-message.hidden {
+            display: none;
+        }
+
+        /* Button Styles */
+        .btn {
+            width: 100%; /* w-full equivalent */
+            padding: 0.75rem 1rem; /* py-3 px-4 equivalent */
+            border-radius: 0.375rem; /* rounded-md equivalent */
+            color: #ffffff; /* text-white equivalent */
+            font-weight: 600; /* font-semibold equivalent */
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* transition duration-200 ease-in-out */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-md equivalent */
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Disabled Button */
+        .btn:disabled {
+            background-color: #d1d5db; /* bg-gray-300 equivalent */
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Active Button */
+        .btn-primary {
+            background-color: #000; /* bg-blue-600 equivalent */
+        }
+        .btn-primary:not(:disabled):hover {
+            background-color: #000; /* hover:bg-blue-700 equivalent */
+        }
+
+        /* Secondary Button (for Start Over) */
+        .btn-secondary {
+            background-color: #000; /* bg-gray-600 equivalent */
+            margin-top: 2rem; /* mt-8 equivalent */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 equivalent */
+        }
+        .btn-secondary:hover {
+            background-color: #000; /* hover:bg-gray-700 equivalent */
+        }
+
+
+        /* Spinner Animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+            -webkit-animation: spin 1s linear infinite; /* For Safari/Chrome */
+            margin-right: 0.75rem; /* mr-3 equivalent */
+            height: 1.25rem; /* h-5 equivalent */
+            width: 1.25rem; /* w-5 equivalent */
+            color: #ffffff; /* text-white equivalent */
+        }
+
+        /* Results Section */
+        #results-section {
+            text-align: center;
+        }
+        #results-section.hidden {
+            display: none;
+        }
+
+        /* Recommendation Content Box */
+        #recommendation-content {
+            background-color: #ffffff; /* bg-white equivalent */
+            padding: 1.5rem; /* p-6 equivalent */
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            border: 1px solid #e5e7eb; /* border border-gray-200 equivalent */
+            text-align: left;
+        }
+        #recommendation-content p {
+            font-size: 1.125rem; /* text-lg equivalent */
+            margin-bottom: 0.5rem; /* mb-2 equivalent */
+        }
+        #recommendation-content p:last-of-type {
+            margin-bottom: 1rem; /* mb-4 equivalent */
+        }
+        #recommendation-content strong {
+            font-weight: 700; /* font-bold equivalent */
+        }
+        .text-blue-700 {
+            color: red;
+        }
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        /* Important Reminders Box */
+        .important-reminders {
+            margin-top: 1.5rem; /* mt-6 equivalent */
+            padding: 1rem; /* p-4 equivalent */
+            background-color: #f3f4f6; /* bg-gray-50 equivalent */
+            border: 1px solid #e5e7eb; /* border border-gray-200 equivalent */
+            border-radius: 0.375rem; /* rounded-md equivalent */
+            font-size: 0.875rem; /* text-sm equivalent */
+            color: #374151; /* text-gray-700 equivalent */
+        }
+        .important-reminders p {
+            font-weight: 600; /* font-semibold equivalent */
+            margin-bottom: 0.25rem; /* mb-1 equivalent */
+        }
+        .important-reminders ul {
+            list-style-type: disc;
+            list-style-position: inside;
+            padding-left: 0;
+            margin: 0;
+        }
+        .important-reminders li {
+            margin-bottom: 0.25rem; /* space-y-1 equivalent */
+        }
+        /* Disclosure Styles */
+        .disclosure {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.75rem; /* text-xs equivalent */
+            color: #6b7280; /* text-gray-500 equivalent */
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+
+    <div id="app" class="bg-white p-6 sm:p-8 rounded-lg shadow-sm w-full max-w-2xl border border-gray-200">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-6 sm:mb-8">
+            Sunscreen SPF Guide
+        </h1>
+
+        <div id="quiz-section" class="space-y-6">
+            <!-- Skin Type -->
+            <div class="question-container">
+                <label for="skinType">
+                    1. How easily does your skin burn when exposed to sun for the first time in a season?
+                </label>
+                <select
+                    id="skinType"
+                    required
+                >
+                    <option value="">Select an option</option>
+                    <option value="Very easily (always burns, never tans)">Very easily (always burns, never tans)</option>
+                    <option value="Easily (usually burns, sometimes tans)">Easily (usually burns, sometimes tans)</option>
+                    <option value="Moderately (sometimes burns, usually tans)">Moderately (sometimes burns, usually tans)</option>
+                    <option value="Rarely (rarely burns, always tans)">Rarely (rarely burns, always tans)</option>
+                    <option value="Never (never burns, always tans deeply)">Never (never burns, always tans deeply)</option>
+                </select>
+            </div>
+
+            <!-- Sun Exposure Level -->
+            <div class="question-container">
+                <label for="exposureLevel">
+                    2. How much direct sun exposure do you typically get (or expect to get)?
+                </label>
+                <select
+                    id="exposureLevel"
+                    required
+                >
+                    <option value="">Select an option</option>
+                    <option value="Minimal (mostly indoors, brief outdoor trips)">Minimal (mostly indoors, brief outdoor trips)</option>
+                    <option value="Moderate (some outdoor activity, daily commute)">Moderate (some outdoor activity, daily commute)</option>
+                    <option value="High (prolonged outdoor sports, beach visits)">High (prolonged outdoor sports, beach visits)</option>
+                    <option value="Extreme (all-day outdoor work or recreation, intense sun)">Extreme (all-day outdoor work or recreation, intense sun)</option>
+                </select>
+            </div>
+
+            <!-- Activity Level -->
+            <div class="question-container">
+                <label for="activityLevel">
+                    3. What is your typical activity level when exposed to the sun?
+                </label>
+                <select
+                    id="activityLevel"
+                    required
+                >
+                    <option value="">Select an option</option>
+                    <option value="Low (casual walking, sitting)">Low (casual walking, sitting)</option>
+                    <option value="Moderate (light exercise, some sweating)">Moderate (light exercise, some sweating)</option>
+                    <option value="High (swimming, intense sweating)">High (swimming, intense sweating)</option>
+                </select>
+            </div>
+
+            <div id="error-message" class="hidden">
+                <strong class="font-semibold">Error: </strong>
+                <span id="error-text"></span>
+            </div>
+
+            <button
+                id="getRecommendationBtn"
+                class="btn"
+                disabled
+            >
+                Get My Sunscreen Recommendation
+            </button>
+        </div>
+
+        <div id="results-section" class="hidden">
+            <h2>Your Sunscreen Recommendation</h2>
+            <div id="recommendation-content">
+                <p><strong class="text-blue-700">SPF Recommendation:</strong> <span id="spf-recommendation"></span></p>
+                <p><strong class="text-blue-700">Sunscreen Type:</strong> <span id="type-recommendation"></span></p>
+                <p><strong class="text-gray-700">Explanation:</strong> <span id="explanation-recommendation"></span></p>
+                <div class="important-reminders">
+                    <p>Important Reminders:</p>
+                    <ul>
+                        <li>Always apply sunscreen generously and reapply every two hours, or more often if swimming or sweating.</li>
+                        <li>Seek shade, especially during peak sun hours (10 AM - 4 PM).</li>
+                        <li>Wear protective clothing, including hats and sunglasses.</li>
+                        <li>No sunscreen provides 100% protection.</li>
+                    </ul>
+                </div>
+            </div>
+            <button
+                id="resetQuizBtn"
+                class="btn btn-secondary"
+            >
+                Start Over
+            </button>
+        </div>
+
+        <!-- Medical Disclosure -->
+        <div class="disclosure">
+            <p>This guide provides general information and is not a substitute for professional medical advice. Always consult with a doctor or physician for personalized health recommendations.</p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables for Canvas environment (not used for persistence, just placeholder as per guidelines)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // DOM elements
+        const skinTypeSelect = document.getElementById('skinType');
+        const exposureLevelSelect = document.getElementById('exposureLevel');
+        const activityLevelSelect = document.getElementById('activityLevel');
+        const getRecommendationBtn = document.getElementById('getRecommendationBtn');
+        const resetQuizBtn = document.getElementById('resetQuizBtn');
+        const quizSection = document.getElementById('quiz-section');
+        const resultsSection = document.getElementById('results-section');
+        const spfRecommendationSpan = document.getElementById('spf-recommendation');
+        const typeRecommendationSpan = document.getElementById('type-recommendation');
+        const explanationRecommendationSpan = document.getElementById('explanation-recommendation');
+        const errorMessageDiv = document.getElementById('error-message');
+        const errorTextSpan = document.getElementById('error-text');
+
+        // State variables
+        let skinType = '';
+        let exposureLevel = '';
+        let activityLevel = '';
+        let loading = false;
+
+        // Function to update button state based on selections
+        const updateButtonState = () => {
+            if (skinType && exposureLevel && activityLevel && !loading) {
+                getRecommendationBtn.disabled = false;
+                getRecommendationBtn.classList.remove('btn-disabled');
+                getRecommendationBtn.classList.remove('bg-gray-300', 'cursor-not-allowed'); // Remove old Tailwind classes
+                getRecommendationBtn.classList.add('btn-primary');
+            } else {
+                getRecommendationBtn.disabled = true;
+                getRecommendationBtn.classList.add('btn-disabled');
+                getRecommendationBtn.classList.add('bg-gray-300', 'cursor-not-allowed'); // Add old Tailwind classes for visual consistency
+                getRecommendationBtn.classList.remove('btn-primary');
+            }
+        };
+
+        // Function to display error message
+        const displayError = (message) => {
+            errorTextSpan.textContent = message;
+            errorMessageDiv.classList.remove('hidden');
+        };
+
+        // Function to hide error message
+        const hideError = () => {
+            errorMessageDiv.classList.add('hidden');
+            errorTextSpan.textContent = '';
+        };
+
+        // Function to handle form submission and get recommendation
+        const getRecommendation = async () => {
+            loading = true;
+            updateButtonState();
+            hideError();
+
+            // Change button text and add spinner
+            getRecommendationBtn.innerHTML = `
+                <span class="flex items-center justify-center">
+                    <svg class="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Generating Recommendation...
+                </span>
+            `;
+
+            // Simulate a short delay for the "generation" process
+            await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
+
+            // Ensure all fields are selected
+            if (!skinType || !exposureLevel || !activityLevel) {
+                displayError('Please answer all questions to get a recommendation.');
+                loading = false;
+                updateButtonState();
+                getRecommendationBtn.innerHTML = 'Get My Sunscreen Recommendation'; // Reset button text
+                return;
+            }
+
+            let spf = '30';
+            let type = 'Broad-spectrum';
+            let explanation = 'A good general-purpose sunscreen for daily activities.';
+
+            // Determine SPF and type based on selections
+            if (skinType.includes('Very easily') || skinType.includes('Easily')) {
+                spf = '50+';
+                explanation = 'Your skin is highly susceptible to burning, so a high SPF is crucial for maximum protection.';
+            } else if (skinType.includes('Moderately')) {
+                spf = '30-50';
+                explanation = 'Your skin has moderate sensitivity; a strong SPF provides reliable protection.';
+            } else if (skinType.includes('Rarely') || skinType.includes('Never')) {
+                spf = '15-30';
+                explanation = 'Your skin is less prone to burning, but protection is still important, especially during prolonged exposure.';
+            }
+
+            if (exposureLevel.includes('High') || exposureLevel.includes('Extreme')) {
+                spf = '50+'; // Override for high/extreme exposure
+                explanation += ' Given your high level of sun exposure, a higher SPF is recommended to maintain protection throughout the day.';
+                if (activityLevel.includes('swimming') || activityLevel.includes('intense sweating')) {
+                    type = 'Broad-spectrum, Water-resistant';
+                    explanation += ' Since you will be sweating or swimming, a water-resistant formula is essential to maintain effectiveness.';
+                } else {
+                    type = 'Broad-spectrum';
+                }
+            } else if (exposureLevel.includes('Moderate')) {
+                if (!spf.includes('50+')) { // Don't downgrade if already 50+ from skin type
+                    spf = '30-50';
+                }
+                explanation += ' For moderate daily exposure, a reliable broad-spectrum sunscreen is key.';
+                if (activityLevel.includes('swimming') || activityLevel.includes('intense sweating')) {
+                    type = 'Broad-spectrum, Water-resistant';
+                    explanation += ' A water-resistant formula is advised if you\'ll be engaging in activities that cause sweating or involve water.';
+                } else {
+                    type = 'Broad-spectrum';
+                }
+            } else { // Minimal exposure
+                if (!spf.includes('50+') && !spf.includes('30-50')) { // Don't downgrade if already higher
+                    spf = '15-30';
+                }
+                explanation += ' Even with minimal exposure, daily broad-spectrum protection is beneficial.';
+                type = 'Broad-spectrum';
+            }
+
+            // Adjust SPF based on activity level if not already high
+            if ((activityLevel.includes('swimming') || activityLevel.includes('intense sweating')) && parseInt(spf) < 30) {
+                spf = '30';
+                explanation += ' Intense activity requires at least SPF 30 for better protection.';
+            }
+
+            // Display results
+            spfRecommendationSpan.textContent = spf;
+            typeRecommendationSpan.textContent = type;
+            explanationRecommendationSpan.textContent = explanation;
+
+            quizSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+
+            loading = false;
+            updateButtonState();
+            getRecommendationBtn.innerHTML = 'Get My Sunscreen Recommendation'; // Reset button text
+        };
+
+        // Reset quiz
+        const resetQuiz = () => {
+            skinTypeSelect.value = '';
+            exposureLevelSelect.value = '';
+            activityLevelSelect.value = '';
+
+            skinType = '';
+            exposureLevel = '';
+            activityLevel = '';
+            hideError();
+            loading = false;
+            updateButtonState();
+
+            resultsSection.classList.add('hidden');
+            quizSection.classList.remove('hidden');
+        };
+
+        // Event Listeners
+        skinTypeSelect.addEventListener('change', (e) => {
+            skinType = e.target.value;
+            updateButtonState();
+        });
+        exposureLevelSelect.addEventListener('change', (e) => {
+            exposureLevel = e.target.value;
+            updateButtonState();
+        });
+        activityLevelSelect.addEventListener('change', (e) => {
+            activityLevel = e.target.value;
+            updateButtonState();
+        });
+        getRecommendationBtn.addEventListener('click', getRecommendation);
+        resetQuizBtn.addEventListener('click', resetQuiz);
+
+        // Initial state update on load
+        document.addEventListener('DOMContentLoaded', updateButtonState);
+    </script>
+</body>
+</html>
