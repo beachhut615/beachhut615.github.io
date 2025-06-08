@@ -4,12 +4,12 @@ date: 2025-06-07
 tags: [blog, tools]
 ---
 <meta property="og:title" content="Suncreen SPF Guide">
-<meta property="og:description" content="Which sunscreen SPF if right for you?">
+<meta property="og:description" content="Which sunscreen SPF is right for you?">
 <meta property="og:image" content="https://m.media-amazon.com/images/I/714vZwlji3L._SL1500_.jpg">
 <meta property="og:url" content="https://beachhut615.github.io/2025/06/07/sunscreen_spf_guide.html">
 <meta property="og:type" content="website">
 
-Which sunscreen SPF if right for you? Try out our new <b><a href="https://beachhut615.github.io/tools/sunscreen_spf_select.html" target="_blank">Sunscreen SPF Guide</a></b><br /><br />
+Which sunscreen SPF is right for you? Try out our new <b><a href="https://beachhut615.github.io/tools/sunscreen_spf_select.html" target="_blank">Sunscreen SPF Guide</a></b><br /><br />
 
 <div id="post-image">
 <a href="https://amzn.to/3FKxOiD" target="_blank"><img src="https://m.media-amazon.com/images/I/714vZwlji3L._SL1500_.jpg"></a>
