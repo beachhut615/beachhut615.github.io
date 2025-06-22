@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPF Suncreen Guide</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="popup-box" class="popup-box">
+        <div class="popup-content">
+            <h2>SPF Suncreen Guide</h2>
+            <form id="spf-form">
+                <label for="skin-type">Skin Type:</label>
+                <select id="skin-type">
+                    <option value="fair">Fair</option>
+                    <option value="medium">Medium</option>
+                    <option value="dark">Dark</option>
+                </select>
+
+                <label for="activity-level">Activity Level:</label>
+                <select id="activity-level">
+                    <option value="low">Low - Casual Activity</option>
+                    <option value="medium">Medium - Light Exercise</option>
+                    <option value="high">High - Heavy Exercise</option>
+                </select>
+
+                <label for="environment">Environment:</label>
+                <select id="environment">
+                    <option value="indoor">Indoor</option>
+                    <option value="outdoor">Outdoor</option>
+                </select>
+
+                <button type="submit">Get Recommendation</button>
+            </form>
+            <div id="recommendation"></div>
+
+        </div>
+            <div id="disclaimer" class="disclaimer">
+                <p>Disclaimer: This tool provides general recommendations and is not a substitute for professional medical advice. Always consult a healthcare provider for personalized advice.</p>
+            </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
